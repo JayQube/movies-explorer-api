@@ -1,8 +1,8 @@
 const allowedCors = [
   'http://localhost:3000',
   'https://localhost:3000',
-  'http://shebyakin.students.nomoredomains.icu',
-  'https://shebyakin.students.nomoredomains.icu',
+  'http://shebyakin.movies.nomoredomains.club',
+  'https://shebyakin.movies.nomoredomains.club',
 ];
 
 const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
