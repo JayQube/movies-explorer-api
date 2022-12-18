@@ -8,7 +8,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const ConflictError = require('../errors/conflict-err');
 const BadRequestError = require('../errors/bad-reques-err');
 
-const { BAD_REQUEST_ERR_MAESSAGE, CONFLICT_ERR_MESSAGE } = require('../utils/constants');
+const { BAD_REQUEST_ERR_MESSAGE, CONFLICT_ERR_MESSAGE } = require('../utils/constants');
 
 module.exports.createUser = (req, res, next) => {
   const {
@@ -26,7 +26,7 @@ module.exports.createUser = (req, res, next) => {
       if (err.code === 11000) {
         next(new ConflictError(CONFLICT_ERR_MESSAGE));
       } else if (err.name === 'ValidationError') {
-        next(new BadRequestError(BAD_REQUEST_ERR_MAESSAGE));
+        next(new BadRequestError(BAD_REQUEST_ERR_MESSAGE));
       } else {
         next(err);
       }
@@ -68,7 +68,7 @@ module.exports.updateProfile = (req, res, next) => {
       if (err.code === 11000) {
         next(new ConflictError(CONFLICT_ERR_MESSAGE));
       } else if (err.name === 'ValidationError') {
-        next(new BadRequestError(BAD_REQUEST_ERR_MAESSAGE));
+        next(new BadRequestError(BAD_REQUEST_ERR_MESSAGE));
       } else {
         next(err);
       }

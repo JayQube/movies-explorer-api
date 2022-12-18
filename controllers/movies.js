@@ -7,7 +7,7 @@ const BadRequestError = require('../errors/bad-reques-err');
 const {
   NOT_FOUND_ERR_MESSAGE,
   FORBIDDEN_ERR_MESSAGE,
-  BAD_REQUEST_ERR_MAESSAGE,
+  BAD_REQUEST_ERR_MESSAGE,
 } = require('../utils/constants');
 
 module.exports.getMovies = (req, res, next) => {
@@ -40,7 +40,7 @@ module.exports.createMovie = (req, res, next) => {
     .then((movie) => res.send(movie))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError(BAD_REQUEST_ERR_MAESSAGE));
+        next(new BadRequestError(BAD_REQUEST_ERR_MESSAGE));
       } else {
         next(err);
       }
@@ -57,14 +57,14 @@ module.exports.deleteMovie = (req, res, next) => {
       if (movie.owner.toString() !== req.user._id) {
         throw new ForbiddenError(FORBIDDEN_ERR_MESSAGE);
       }
-      Movie.findByIdAndRemove(req.params.movieId)
+      return Movie.findByIdAndRemove(req.params.movieId)
         .then((chosenMovie) => {
           res.send(chosenMovie);
         });
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new BadRequestError(BAD_REQUEST_ERR_MAESSAGE));
+        next(new BadRequestError(BAD_REQUEST_ERR_MESSAGE));
       } else {
         next(err);
       }

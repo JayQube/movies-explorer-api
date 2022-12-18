@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const isURL = require('validator/lib/isURL');
 
+const {
+  URL_IMAGE_VALIDATION_ERR_MESSAGE,
+  URL_TRAILER_VALIDATION_ERR_MESSAGE,
+  URL_THUMBNAIL_VALIDATION_ERR_MESSAGE,
+} = require('../utils/constants');
+
 const movieSchema = new mongoose.Schema({
   country: {
     type: String,
@@ -27,7 +33,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => isURL(v),
-      message: 'URL постера не соответствует требованиям',
+      message: URL_IMAGE_VALIDATION_ERR_MESSAGE,
     },
   },
   trailerLink: {
@@ -35,7 +41,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => isURL(v),
-      message: 'URL трейлера не соответствует требованиям',
+      message: URL_TRAILER_VALIDATION_ERR_MESSAGE,
     },
   },
   thumbnail: {
@@ -43,7 +49,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => isURL(v),
-      message: 'URL превью постера не соответствует требованиям',
+      message: URL_THUMBNAIL_VALIDATION_ERR_MESSAGE,
     },
   },
   owner: {

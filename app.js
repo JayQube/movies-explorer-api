@@ -38,5 +38,5 @@ app.use(errors());
 app.use(centralizedErrorHandler);
 
 app.listen(NODE_ENV === 'production' ? PORT : PORT_DEV, () => {
-  console.log(`App listening on port ${PORT}`);
+  console.log(`App listening on port ${NODE_ENV === 'production' ? PORT : PORT_DEV}`);
 });
